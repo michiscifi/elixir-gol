@@ -2,11 +2,12 @@
 
 ---
 
-## 1️⃣ Projektstart & Setup
+## Setup erlang and elixir using asdf
 
-- Neues GitHub-Repo: `elixir-gol`
-- Verzeichnis lokal ausgecheckt
-- ASDF-Umgebung für Elixir & Erlang eingerichtet:
+```bash
+brew install asdf
+```
+
 
 ```bash
 asdf plugin add erlang
@@ -17,22 +18,37 @@ asdf set erlang 28.3.1
 asdf set elixir 1.20.0-rc.1-otp-28
 ```
 
-### iex 
+### test with iex 
 ```
 iex
 # Erlang/OTP 28 [erts-16.2]
 # Interactive Elixir (1.20.0-rc.1) - press Ctrl+C to exit
 ```
 
-### core module: gol_core/lib/gol_core/core.ex
+### create game of life project 
 
-```elixir
-defmodule GolCore.Core do
-  def add(a, b) do
-    a + b
-  end
-end
 ```
+mix new conway --sup
+```
+
+'mix' is an elixir tool for managing projects
+
+option '--sup' means: add supervisor structure
+
+```bash
+conway
+├── lib
+│   ├── conway
+│   │   └── application.ex
+│   └── conway.ex
+├── mix.exs
+├── README.md
+└── test
+    ├── conway_test.exs
+    └── test_helper.exs
+```
+
+
 
 ### iex
 ```bash
