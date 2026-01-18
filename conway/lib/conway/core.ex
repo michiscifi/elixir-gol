@@ -212,6 +212,8 @@ defmodule Conway.Core do
   @doc """
   Creates a string representation of a world.
 
+  10 |> Conway.Core.create_world |> Conway.Core.randomize_world |> Conway.Core.format_world |> IO.puts
+
   ## Examples
     iex> 3 |> Conway.Core.create_world |> Conway.Core.set_alive(4) |> Conway.Core.format_world
     " o  o  o \\n o  x  o \\n o  o  o \\n"
@@ -219,7 +221,9 @@ defmodule Conway.Core do
   def format_world(world) do
     xbase = get_xbase(world)
 
-    Enum.map(world, fn {index, value} ->
+    world
+    |> Enum.sort_by(fn {index, _} -> index end)
+    |> Enum.map(fn {index, value} ->
       symbol =
         case value do
           :alive -> " x "
@@ -235,5 +239,9 @@ defmodule Conway.Core do
       end
     end)
     |> Enum.join()
+  end
+
+  def randomize_world(world) do
+    world |> Map.new(fn {index, _} -> {index, Enum.random([:dead, :alive])} end)
   end
 end
